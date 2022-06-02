@@ -6,7 +6,7 @@ FROM mcr.microsoft.com/vscode/devcontainers/base:0-${VARIANT}
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
-    wget iproute2 procps lsb-release
+    wget iproute2 procps lsb-release fzf
 
 ARG UCM_DIR=/opt/unison-language
 ARG UCM_ARCHIVE_NAME=ucm-linux.tar.gz

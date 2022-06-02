@@ -1,1 +1,35 @@
-> List.map (x -> x * 2) [1,2,3,4,5,6,7,8,9]
+use .base
+
+Gus.square : Nat -> Nat
+Gus.square x = x * x
+
+> Gus.square 4
+
+-- A comment, ignored by Unison
+
+> reverse [1,2,3,4]
+> 4 + 6
+> 5.0 / 2.0
+> not true
+
+Gus.factorial : Nat -> Nat
+Gus.factorial i =
+  go acc n = match n with
+    0 -> acc
+    1 -> acc
+    n -> go (acc*n) (n-1)
+  go i (i-1)
+
+> Gus.factorial 4
+
+Gus.fiblike : (a -> a -> a) -> a -> a -> Nat -> [a]
+Gus.fiblike (+) a0 a1 n =
+  use List
+  go acc a b n = match n with
+    0 -> acc :+ b
+    n -> go (acc :+ b) b (a + b) (n-1)
+  match n with
+    0 -> []
+    _ -> go [a0] a0 a1 (n - 1)
+
+> Gus.fiblike (+) 1 1 4
